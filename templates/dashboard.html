@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>License Dashboard</title>
+</head>
+<body>
+    <h2>License Dashboard</h2>
+    <form action="/add_license" method="post">
+        <input type="email" name="email" placeholder="Enter email" required>
+        <button type="submit">Generate License</button>
+    </form>
+
+    <h3>Existing Licenses</h3>
+    <ul>
+        {% for email, key in licenses.items() %}
+            <li>
+                <b>{{ email }}</b>: {{ key }}
+                <form action="/revoke_license" method="post" style="display:inline;">
+                    <input type="hidden" name="email" value="{{ email }}">
+                    <button type="submit">Revoke</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
